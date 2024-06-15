@@ -129,9 +129,9 @@ if ($result->num_rows > 0) {
         <?php
         for ($i=1; $i<=$total_pages; $i++) {
             if ($i == $page) {
-                echo "<a href='post_data.php?page=".$i."' class='active'>".$i."</a>";
+                echo "<a href='review_location.php?page=".$i."' class='active'>".$i."</a>";
             } else {
-                echo "<a href='post_data.php?page=".$i."'>".$i."</a>";
+                echo "<a href='review_location.php?page=".$i."'>".$i."</a>";
             }
         }
         //$conn->close();
