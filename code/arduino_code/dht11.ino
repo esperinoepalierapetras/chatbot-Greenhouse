@@ -6,6 +6,10 @@
 
 int dhtPin = 2;             // Set pin to pin 2 (digital)
 int dly = 2000;             // Define delay of 2000ms (2 seconds)
+//Constants 
+const int hygrometer = A0;  //Hygrometer sensor analog pin output at pin A0 of Arduino
+//Variables 
+int soilMoisture;
 
 #define DHT_TYPE DHT11      // Uncomment if using the blue (dht11) sensor
 //#define DHT_TYPE DHT22      // Uncomment if using the white (dht22) sensor
@@ -34,7 +38,10 @@ void loop() {
   
   float humidity = dht.readHumidity();
   float temperature = dht.readTemperature();
-  float hygrometer = 35.5;
+  soilMoisture = analogRead(hygrometer); //Read analog value;
+  soilMoisture = constrain(soilMoisture, 400, 1023); //Keep the ranges
+  soilMoisture = map(soilMoisture, 400, 1023, 100,0); //Map value: 400 wil be 100 and 1023 will be 0
+  
   //int soilMoisture = analogRead(SOIL_MOISTURE_PIN);
 
   
@@ -50,9 +57,6 @@ void loop() {
   Serial.print(",Temperature:");
   Serial.print(temperature);
   Serial.print(",Hygrometer:");
-  Serial.println(hygrometer);
+  Serial.println(soilMoisture);
   //Serial.println(soilMoisture);
-  delay(10000);
-  
-  
-}
+  delay(300000);
